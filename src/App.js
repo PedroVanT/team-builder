@@ -27,7 +27,7 @@ function App() {
       role: formValues.role,
     };
     setTeamMembers([...teamMembers, newMember]);
-    // setTeamMembers(newMember);
+
     setFormValues(initialFormValues);
 
     if (!newMember.username || !newMember.email || !newMember.role) return;

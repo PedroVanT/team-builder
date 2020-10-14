@@ -1,4 +1,32 @@
 import React from "react";
+import styled from "styled-components";
+
+const FormSection = styled.form`
+  border: 3px solid black;
+  border-radius: 1%;
+  text-align: center;
+  min-height: 25vh;
+
+  margin-left: 25%;
+  margin-right: 25%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 2px 2px 2px black;
+
+  label {
+    display: flex;
+    justify-content: center;
+    padding: 2%;
+    /* text-shadow: 1px 1px 1px black; */
+  }
+  label input {
+    margin-left: 2%;
+  }
+  label select {
+    margin-left: 2%;
+  }
+`;
 
 const Form = (props) => {
   const { values, update, submit } = props;
@@ -14,10 +42,11 @@ const Form = (props) => {
   };
 
   return (
-    <form className="form container" onSubmit={onSubmit}>
+    <FormSection className="form container" onSubmit={onSubmit}>
       <div className="form-group inputs">
+        <h3>New Member registration:</h3>
         <label>
-          Name
+          Name:
           <input
             type="text"
             name="name"
@@ -28,7 +57,7 @@ const Form = (props) => {
           />
         </label>
         <label>
-          Email
+          Email:
           <input
             type="email"
             name="email"
@@ -39,24 +68,30 @@ const Form = (props) => {
           />
         </label>
         <label>
-          Role
+          Role:
           <select name="role" value={values.role} onChange={onChange}>
             <option value="">select role</option>
             <option value="Front-End Engineer">Front-End Engineer</option>
             <option value="Back-End Engineer">Back-End Engineer</option>
             <option value="Full Stack Engineer">Full Stack Engineer</option>
             <option value="Software Engineer in Test (QA Engineer)">
-              Software Engineer in Test (QA Engineer)
+              Software Engineer in Test
             </option>
             <option value="DevOps Engineer">DevOps Engineer</option>
             <option value="Security Engineer">Security Engineer</option>
           </select>
         </label>
         <div className="submit">
-          <button>submit</button>
+          <button
+            disabled={
+              !values.name || !values.email || !values.role ? true : false
+            }
+          >
+            submit
+          </button>
         </div>
       </div>
-    </form>
+    </FormSection>
   );
 };
 
